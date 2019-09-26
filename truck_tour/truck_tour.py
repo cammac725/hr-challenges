@@ -1,6 +1,8 @@
+import queue
+
 def truckTour(petrolpumps):
     # init queue 
-    route = Queue()
+    route = queue.Queue()
 
     # add all the pumps to the queue 
     for p in petrolpumps:
