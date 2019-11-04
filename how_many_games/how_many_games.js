@@ -58,6 +58,39 @@ function howManyGames2(p, d, m, s) {
     return count;
 }
 
+function howManyGames3(p, d, m, s) {
+    let count = 0;
+    let cost = p;
+    if (p > s) {
+        return 0;
+    }
+    do {
+        if (count === 0) {
+            count++;
+            s -= cost;
+        }
+        if (cost - d <= m) {
+            cost = m;
+            s -= cost;
+            if (s < 0) {
+                return count;
+            } else {
+                count++;
+            }
+        }
+        else {
+            cost -= d;
+            s -= cost;
+            if (s < 0) {
+                return count;
+            } else {
+                count++;
+            }
+        }
+    } while (s > 0)
+    return count;
+};
+
 
 
 //[Tests]
