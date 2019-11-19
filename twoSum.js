@@ -2,9 +2,8 @@ var twoSum = function (nums, target) {
 
     // brute force, nested loops
     // let resArr = []
-    // for(let i = 0; i<nums.length-1; i++){
-    //     for(let j = 1; j<nums.length; j++){
-    //         // console.log(nums[i], nums[j], target)
+    // for(let i = 0; i < nums.length-1; i++){
+    //     for(let j = 1; j < nums.length; j++){
     //         if((nums[i] + nums[j]) === target){
     //             if(i !== j){
     //                 resArr.push(i, j)
@@ -14,7 +13,7 @@ var twoSum = function (nums, target) {
     //     }
     // }
 
-
+    // using cache
     let cache = {}
     let retArr = []
     for (let i = 0; i < nums.length; i++) {
