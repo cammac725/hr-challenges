@@ -32,22 +32,15 @@ var twoSum = function (nums, target) {
     // let left = 0
     // let right = nums.length - 1
     // result = []
-
     // while (left < right) {
-
     //     if (nums[left] + nums[right] != target) {
     //         if (left + 1 == right) {
     //             right = nums.length - 1
     //             left++
-
     //         } else {
     //             right--
     //         }
-
-
-
     //     } else if (nums[left] + nums[right] == target) {
-
     //         result.push(left, right)
     //         return result
     //     }

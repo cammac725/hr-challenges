@@ -1,22 +1,20 @@
 function reverseList(head) {
 
     // iterative
-    let current = head
-
-    if (!current) {
-        return current
+    if (!head) {
+        return head
     }
 
-    let currNext = head.next
-    current.next = null
+    let first = head
+    let current = head.next
 
-    while (currNext) {
-        let temp = currNext.next
-        currNext.next = current
-        current = currNext
-        currNext = temp
+    while (current) {
+        head.next = current.next
+        current.next = first
+        first = current
+        current = head.next
     }
-    return current
+    return first
 
     // recursive
     if (!head) {
