@@ -5,13 +5,19 @@ arr = ["pink", "green", "green", "red", "green", "pink"]
 function sockMerchant(arr) {
     // create a set
     let socks = new Set()
+    // init counter
     let count = 0
 
+    // loop through socks
     for (let sock of arr) {
+        // if created set already has sock
         if (socks.has(sock)) {
+            //incr counter
             count++
+            // remove it from the set, it has a pair
             socks.delete(sock)
         } else {
+            // add it to the set, it's a single at this point
             socks.add(sock)
         }
     }
