@@ -10,12 +10,12 @@ def truckTour(petrolpumps):
     # var to hold the pump we end up starting at 
     start = 0
     # var to keep track of the number of pumps we've traversed 
-    passed = 0
+    traversed = 0
     # amount of gas we have 
     gas = 0
 
-    # loop so long as we haven't passed every single pump 
-    while passed < len(petrolpumps):
+    # loop so long as we haven't traversed every single pump 
+    while traversed < len(petrolpumps):
         # get the next pump along the route 
         pump = route.get() 
         # add the amount of gas it has available 
@@ -23,19 +23,19 @@ def truckTour(petrolpumps):
         # check if our gas tank has enough to get us 
         # to the next pump 
         if gas >= pump[1]:
-            # increment passed counter 
-            passed += 1
+            # increment traversed counter 
+            traversed += 1
             # decrement by the amount of gas it takes to get there 
             gas -= pump[1] 
         # if it doesn't, reset our gas tank, the number of pumps
-        # we've passed, and move on to consider the next pump
+        # we've traversed, and move on to consider the next pump
         else:
             # otherwise, starting at the pump we started at 
             # isn't a viable option, so let's consider the 
             # pump after the one we're currently on 
-            start += passed + 1
-            # reset passed counter 
-            passed = 0
+            start += traversed + 1
+            # reset traversed counter 
+            traversed = 0
             # reset gas counter 
             gas = 0
         # add the pump to the back of the route 
