@@ -22,7 +22,10 @@ Return an array with the output: [0, 1].
 Complete the freqQuery function in the editor below. It must return an array of integers where each element is a 1 if there is at least one element value with the queried number of occurrences in the current array, or 0 if there is not.
 
 """
-queries = [(1, 1), (2, 2), (3, 2), (1, 1), (1, 1), (2, 1), (3, 2)]
+# queries = [(1, 1), (2, 2), (3, 2), (1, 1), (1, 1), (2, 1), (3, 2)]
+# queries = [(3, 4), (2, 1003), (1, 16), (3, 1)]
+queries = [(1, 3), (2, 3), (3, 2), (1, 4), (1, 5), (1, 5), (1, 4), (3, 2), (2, 4), (3, 2)]
+
 
 from collections import defaultdict
 
@@ -31,38 +34,42 @@ from collections import defaultdict
 
 def freqQuery(queries):
     output = []
-    obj = defaultdict(int)
+    val_counts = defaultdict(int)
+    freq_counts = defaultdict(int)
 
-    print(queries)
-    
     for i, j in queries:
         # if we see a 1 query
-        if i == 1:
-            # O(1)
-            # if the value is in our obj
-            if j in obj:
-                # increment it's count
-                obj[j] += 1
-            # if value isn't in our obj
+        if i == 1:                        # O(1)
+            if j in val_counts:
+                # decrement the value's old count before anything else
+                if freq_counts[val_counts[j]] > 0:
+                    freq_counts[val_counts[j]] -= 1
+                val_counts[j] += 1
+                # increment the frequency in freq_counts
+                freq_counts[val_counts[j]] += 1 
             else:
-                # insert the value into our obj
-                obj[j] = 1
+                val_counts[j] = 1
+                if freq_counts[val_counts[j]]:
+                    freq_counts[val_counts[j]] += 1
+                else:
+                    freq_counts[val_counts[j]] = 1
         # if we see a 2 query
-        if i == 2:
-            # O(1)
-            # check the obj for that value, query[i][1]
-            if j in obj and obj[j] > 0:
-                # if we find it, delete it
-                obj[j] -= 1
-                # if not, return
+        if i == 2:                                     # O(1)
+            # check that th value exists in val_counts
+            if val_counts[j]:
+                # decrement the old frequency count
+                freq_counts[val_counts[j]] -= 1
+                val_counts[j] -= 1
+                # increment the frequency
+                freq_counts[val_counts[j]] += 1
         # if we see a 3 query
-        if i == 3:
-            # check the obj, and see if any value == frequency query[i][1]
-            if j in obj.values():
-                # O(n) linear in number of key, value pairs
-                # if so, append 1 to output
+        if i == 3:           # O(n) linear in number of key, value pairs
+            # aim for O(1) runtime
+            # check j in an object rather than array
+            # instead of checking against the values in an object, it 
+            # would be faster to check against the keys of an object
+            if j in freq_counts and freq_counts[j] > 0:
                 output.append(1)
-            # if not, append 0 to output
             else:
                 output.append(0)
 
