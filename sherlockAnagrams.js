@@ -17,9 +17,9 @@ function sherlockAndAnagrams(s) {
 
     // loop over string with 2 pointers
     for (let i = 0; i < s.length; i++) {
-        for (let j = i; j < s.length; j++) {
+        for (let j = i + 1; j <= s.length; j++) {
             // create every substring and sort them
-            arr.push(s.substring(i, j + 1)
+            arr.push(s.s(i, j)
                 .split('')
                 .sort()
                 .join(''))
