@@ -24,3 +24,17 @@ function chunk(array, size) {
 // or for loop where we increment by chunk size
 // index will be starting point of slice for array 2
 // will need length remaining and chunk size
+
+
+function chunk(array, size) {
+  let chunked = []
+  for (let item of array) {
+    let lastItem = chunked[chunked.length - 1]
+    if (!lastItem || lastItem.length === size) {
+      chunked.push([item])
+    } else {
+      lastItem.push(item)
+    }
+  }
+  return chunked
+}
